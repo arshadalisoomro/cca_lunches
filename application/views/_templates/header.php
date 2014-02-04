@@ -24,7 +24,7 @@
     <?php if (Session::get('user_account_type') == ACCOUNT_TYPE_ADMIN):?>
     <link rel="stylesheet" href="<?php echo URL; ?>public/css/admin1.css">
     <?php endif; ?>
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
 </head>
 <body>
 
