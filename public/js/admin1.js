@@ -601,8 +601,9 @@ $(document).ready(function() {
 		userFormDataSaved = $('#formUser').serialize();
 	 	$('#modalUser').modal();
 	}
-	$(document).on("click touchstart", "#btnCreateNewAccount", function(e) {addAccount();});
+	$(document).on("click touchstart", "#btnCreateNewAccount", function(e) {e.preventDefault();addAccount();});
 	$(document).on("click touchstart", "#btnAccountDelete", function(e) {
+	e.preventDefault();
 		$.ajax({
 			type: "GET",
 			url: 'deleteaccount',
@@ -615,6 +616,7 @@ $(document).ready(function() {
 		});
 	});
 	$(document).on("click touchstart", "#btnUserDelete", function(e) {
+	e.preventDefault();
 		$.ajax({
 			type: "GET",
 			url: 'deleteuser',
@@ -628,8 +630,7 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click touchstart", "#tblAcctMaint a", function(e) {
-		e.stopPropagation();
-    	e.cancelBubble = true;
+		e.preventDefault();
     	
 	 	var el = $(this);
 	 	if (el.attr('href') == '#ADD') {
@@ -652,7 +653,8 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(document).on("click", "#modalUser #btnUserOK", function() {
+	$(document).on("click", "#modalUser #btnUserOK", function(e) {
+	e.preventDefault();
 		var fname = $.trim($("#fname").val());
 		var lname = $.trim($("#lname").val());
 		fname = fname.replace(/,/g, '').substring(0,50);
@@ -707,7 +709,8 @@ $(document).ready(function() {
     	var re = /@/;
     	return re.test(email);
     }
-	$(document).on("click", "#modalAccount #btnAccountOK", function() {
+	$(document).on("click", "#modalAccount #btnAccountOK", function(e) {
+	e.preventDefault();
 		var aname_acc = $.trim($("#aname_acc").val());
 		var uname = $.trim($("#uname").val());
 		var email = $.trim($("#email").val());
