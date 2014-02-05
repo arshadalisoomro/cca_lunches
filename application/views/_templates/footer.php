@@ -6,7 +6,7 @@
 
     <script type="text/javascript" src="<?php echo URL; ?>public/js/common2.js"></script>
     <?php if (Session::get('user_account_type') == ACCOUNT_TYPE_ADMIN):?>
-        <script type="text/javascript" src="<?php echo URL; ?>public/js/admin1.js"></script>
+        <script type="text/javascript" src="<?php echo URL; ?>public/js/admin2.js"></script>
     <?php endif; ?>
 </body>
 </html>
