@@ -8,6 +8,7 @@ School Lunch Ordering System
 * Integrates Administrator and End User functions into a common UI for simplicity.
 
 ### Features - End User
+* View and Order Lunches by Family for an entire week.  Users of all ages can order lunches in three clicks.
 * Upcoming Lunches report
 * My Account - Summary, Payments, Lunches Ordered
 * PayPal integration
