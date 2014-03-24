@@ -9,7 +9,7 @@ School Lunch Ordering System
 * Highly reliable and virtually maintanance free.  The system has been in use for over five years.
 
 ### Features - End User
-* View and Order Lunches by Family for an entire week.  Users of all ages can order lunches in three clicks.
+* View and Order Lunches by Family for an entire week.  Users of all ages can order a lunch in three clicks.
 * Upcoming Lunches report
 * My Account - Summary, Payments, Lunches Ordered
 * PayPal integration
