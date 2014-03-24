@@ -1,7 +1,7 @@
-cca_lunches
+School Lunch Ordering system
 ===========
 
-School Lunch Ordering system
+
 
 
 # php-login
