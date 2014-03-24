@@ -4,9 +4,12 @@ School Lunch Ordering System
 ### Features
 * Find the official portal page of the project here: **[php-login.net](http://www.php-login.net)**.
 * users can register, login, logout (with username, email, password)
-* users can register and login via Facebook (official Facebook PHP SDK used)
-* [planned: users can register/login via Twitter, Google+, etc.]
 * 
+
+## Live Demo
+
+See a [live demonstration](http://erictotten.info/orderlunches/)
+
 
 ### A PHP & MySQL login script built into a skeleton MVC application
 
@@ -75,9 +78,7 @@ login with email, i18n/internationalization, mail sending via PHPMailer (SMTP or
 - everything is "as manual as possible"
 - massive refactoring
 
-## Live Demo
 
-See a [live demonstration](http://php-login.net/demo4.html) or [see the server's phpinfo()](http://phpinfo.php-login.net/).
 
 ## Requirements
 
