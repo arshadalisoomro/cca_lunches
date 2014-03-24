@@ -6,6 +6,7 @@ School Lunch Ordering System
 * Uses Javascript/Ajax for excellent performance and UI features: **[jQuery]( http://jquery.com/)**, **[Bootstrap](http://getbootstrap.com/)**, **[Select2](http://ivaynberg.github.io/select2/)**, **[MomentJS](http://momentjs.com/)** and more
 * The UI is designed to minimize typing - great for desktops/laptops or tablets.
 * Integrates Administrator and End User functions into a common UI for simplicity.
+* Highly reliable and virtually maintanance free.  The system has been in use for over five years.
 
 ### Features - End User
 * View and Order Lunches by Family for an entire week.  Users of all ages can order lunches in three clicks.
