@@ -2,13 +2,12 @@ School Lunch Ordering System
 ============================
 
 ### Features
-* Find the official portal page of the project here: **[php-login.net](http://www.php-login.net)**.
-* users can register, login, logout (with username, email, password)
+* Uses the open-source project **[php-login.net](http://www.php-login.net)** for login/logout/password reset etc.
 * 
 
 ## Live Demo
 
-See a [live demonstration](http://erictotten.info/orderlunches/)
+See a [live demonstration](http://erictotten.info/orderlunches/).
 
 
 ### A PHP & MySQL login script built into a skeleton MVC application
