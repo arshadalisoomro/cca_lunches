@@ -1,13 +1,8 @@
 School Lunch Ordering system
-===========
+============================
 
 
 
-
-# php-login
-
-*Welcome to the NEW 2.0 version of the php-login! All 4 scripts have their own repos now and "php-login" is the new home
-of the former 4-full-mvc-framework version. Thanks for your support, 900+ stars and 380+ forks, simply WOW!*
 
 ### A PHP & MySQL login script built into a skeleton MVC application
 
@@ -19,6 +14,9 @@ Follow the project on **[Twitter](https://twitter.com/simplephplogin)**,
 **[Google+](https://plus.google.com/104110071861201951660)** and have a look on the official support blog
 **[Dev Metal](http://www.dev-metal.com)**.
 Ask questions in the **[Official Support Forum](http://support-forum.php-login.net/)**.
+
+*Welcome to the NEW 2.0 version of the php-login! All 4 scripts have their own repos now and "php-login" is the new home
+of the former 4-full-mvc-framework version. Thanks for your support, 900+ stars and 380+ forks, simply WOW!*
 
 ### MVC Framework Version 2.0-beta (this one here)
 * built with the official PHP password hashing functions, fitting the most modern password hashing/salting web standards
