@@ -1,14 +1,18 @@
-School Lunch Ordering system
+School Lunch Ordering System
 ============================
 
-
-
+### Features
+* Find the official portal page of the project here: **[php-login.net](http://www.php-login.net)**.
+* users can register, login, logout (with username, email, password)
+* users can register and login via Facebook (official Facebook PHP SDK used)
+* [planned: users can register/login via Twitter, Google+, etc.]
+* 
 
 ### A PHP & MySQL login script built into a skeleton MVC application
 
 This script is part of the **PHP Login Project**, a collection of four similar login scripts for different use-cases.
 This script here is the MVC framework version.
-Find the official portal page of the project here: **[php-login.net](http://www.php-login.net)**.
+
 Follow the project on **[Twitter](https://twitter.com/simplephplogin)**,
 **[Facebook](https://www.facebook.com/pages/PHP-Login-Script/461306677235868)** or
 **[Google+](https://plus.google.com/104110071861201951660)** and have a look on the official support blog
