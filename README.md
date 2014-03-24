@@ -1,6 +1,8 @@
 School Lunch Ordering System
 ============================
 
+This project was created to help a private gradeschool manage their lunch program.  Lunches are ordered and delivered from local restaurants daily. 
+
 ### Features - Technical
 * Uses the MVC version of **[php-login.net](http://www.php-login.net)** for login/logout/password reset etc.
 * Uses Javascript/Ajax for excellent performance and pretty UI: **[jQuery]( http://jquery.com/)**, **[Bootstrap](http://getbootstrap.com/)**, **[Select2](http://ivaynberg.github.io/select2/)**, **[MomentJS](http://momentjs.com/)** and more
