@@ -1059,7 +1059,8 @@ class LoginModel
         $query = $this->db->prepare("UPDATE los_accounts
                                         SET user_password_hash = :user_password_hash,
                                             user_password_reset_hash = NULL,
-                                            user_password_reset_timestamp = NULL
+                                            user_password_reset_timestamp = NULL,
+                                            use_new_password = 1
                                       WHERE user_name = :user_name
                                         AND user_password_reset_hash = :user_password_reset_hash
                                         AND user_provider_type = :user_provider_type");
