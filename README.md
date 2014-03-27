@@ -11,7 +11,7 @@ This project was created to help a private grade school manage their lunch progr
 * Highly reliable and virtually maintanance free.  The system has been in use for over five years.
 
 ### Features - End User
-* View and Order Lunches by Account for an entire week.  Users of all ages can order a lunch in three clicks.
+* View and order lunches by account for an entire week.  Users of all ages can order a lunch in three clicks.
 * Upcoming Lunches report
 * My Account - Summary, Payments, Lunches Ordered
 * PayPal integration
