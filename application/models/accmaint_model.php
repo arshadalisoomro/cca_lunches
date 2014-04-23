@@ -67,11 +67,11 @@ class AccMaintModel {
 					}
 				}
 				$data = 'data-aid="'.$useraccount->account_id.'"';
-				$data .= 'data-uname="'.$useraccount->user_name.'"';
-				$data .= 'data-uactive="'.$useraccount->user_active.'"';
-				$data .= 'data-atype="'.$useraccount->user_account_type.'"';
-				$data .= 'data-nnorders="'.$useraccount->no_new_orders.'"';
-				$data .= 'data-acount="'.$acount.'"';
+				$data .= ' data-uname="'.$useraccount->user_name.'"';
+				$data .= ' data-uactive="'.$useraccount->user_active.'"';
+				$data .= ' data-atype="'.$useraccount->user_account_type.'"';
+				$data .= ' data-nnorders="'.$useraccount->no_new_orders.'"';
+				$data .= ' data-acount="'.$acount.'"';
 				
 				if ($useraccount->account_id == $selected_id)
 					$res .= '<tr id="SELECTED"><td><a '.$data.' href="#">'.$useraccount->account_name.'</a></td><td>'.$useraccount->user_email.'</td><td>';
@@ -92,10 +92,10 @@ class AccMaintModel {
 			}
 			$firstUserRow = false;
 			$data = 'data-uid="'.$useraccount->userID.'"';
-			$data .= 'data-ato="'.$useraccount->allowedToOrder.'"';
-			$data .= 'data-tid="'.$useraccount->teacherID.'"';
-			$data .= 'data-utype="'.$useraccount->type.'"';
-			$data .= 'data-ucount="'.$ucount.'"';
+			$data .= ' data-ato="'.$useraccount->allowedToOrder.'"';
+			$data .= ' data-tid="'.$useraccount->teacherID.'"';
+			$data .= ' data-utype="'.$useraccount->type.'"';
+			$data .= ' data-ucount="'.$ucount.'"';
 			$res .= '<div><a '.$data.' href="#">'.$useraccount->lastName.', '.$useraccount->firstName.'</a></div>';
 			$lastAccount = $useraccount->account_name;
 		}
