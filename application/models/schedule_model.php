@@ -229,9 +229,9 @@ class ScheduleModel {
 		$res .= '<label class="control-label">Teacher (Grade)</label>';
 		
 		if ($nleid > 0 || $orders > 0)
-			$res .= '<select id="gradesteachers" name="teacherid" disabled>';
+			$res .= '<select id="gradesteachers" name="teacherid" disabled class="form-control">';
 		else 
-			$res .= '<select id="gradesteachers" name="teacherid">';
+			$res .= '<select id="gradesteachers" name="teacherid" class="form-control">';
 		
 		if ($nleid == 0)
 			$res .= '<option value="0">[Please Select]</option>';

@@ -48,11 +48,12 @@ class PaymentsModel {
 				$res .= $crDate->format("Y-m-d");
 				$res .= '</td>';
 				$res .= '<td data-id="'.$payment->id.'" data-paymeth="'.$payment->payMethod.'">';
-				$res .= '<button type="button" title="Edit" class="btn btn-primary btn-xs">E</button>&nbsp;<button type="button" title="Delete" class="btn btn-danger btn-xs">–</button>';
+				$res .= '<button type="button" title="Edit" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span></button>&nbsp;';
+				$res .= '<button type="button" title="Delete" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus"></span></button>';
 				$res .= '</td>';
 			$res .= '</tr>';
 		}
-		$res .= '<tr><td></td><td></td><td></td><td></td><td data-id="0"><button type="button" title="Add" class="btn btn-success btn-sm">+</button></td></tr>';
+		$res .= '<tr><td></td><td></td><td></td><td></td><td data-id="0"><button type="button" title="Add" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></button></td></tr>';
 		for ($i=1;$i<6;$i++) {
 			$res .= '<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td></tr>';
 		}

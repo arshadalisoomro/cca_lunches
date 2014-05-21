@@ -45,7 +45,7 @@ class ContactUsModel {
             return false;
         }
 
-        if (isset($_POST["captcha"]) AND ($_POST["captcha"] == $_SESSION['captcha'])) {
+        if (isset($_POST["captcha"]) AND isset($_SESSION["captcha"]) AND ($_POST["captcha"] == $_SESSION['captcha'])) {
             //good to go
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;

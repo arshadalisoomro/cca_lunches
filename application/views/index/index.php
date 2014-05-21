@@ -4,6 +4,11 @@
     <h2>Welcome to the CCA Lunch Ordering System</h2>
     <br />
 
+	<br />
+	<h3 style="color:#009900;">** NEW!&nbsp;&nbsp;Mobile Friendly **</h3>
+	<p>Try ordering lunches on your smartphone!</p>
+	<br /><br />
+	
     <?php if (Session::get('user_logged_in') == false):?>
         <h3>Returning Users</h3>
         <p>
@@ -13,14 +18,13 @@
         <h3>New User or Forgot Your Password?</h3>
         <p>
             <a href="<?php echo URL; ?>login/requestpasswordreset" class="btn btn-primary" role="button">Create / Reset My Password</a>
-
         </p>
         <br />
     <?php endif; ?>
 
     <?php if (Session::get('user_logged_in') == true):?>
         <h3>You Are Currently Logged In</h3>
-        <p style="color:#336699;font-size:20px;margin: 0 0 20px;"><?php echo Session::get('account_name') ?></p>
+        <p style="color:#336699;font-size:20px;margin: 0 0 20px;">** <?php echo Session::get('account_name') ?> **</p>
 
         <p>
             Select a choice from the menu in the upper right corner, or <br /><br />

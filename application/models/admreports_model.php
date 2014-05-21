@@ -37,10 +37,10 @@ class AdmReportsModel {
 		
 		if ($forHardcopy) {
 			$res .= '<!DOCTYPE html><head><style>h1,h2,h3,h4,h5,h6{margin: 5px 0;}</style></head><body style="text-align:center;width:980px;margin: 20px auto;" onload="window.print();">';
-			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/ccaimages/rpthdr.png"><br /><br />';
+			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/rpthdr.png"><br /><br />';
 		} else {
 			$res .= '<div class="printtoscreen admreport">';
-			$res .= '<a data-href="'.URL.'admreports/printadmreport/1/'.$date->format('Y-m-d').'" href="javascript:" class="btn btn-primary btn-print">Print</a>';
+			$res .= '<a data-href="'.URL.'admreports/printadmreport/1/'.$date->format('Y-m-d').'" href="#" class="btn btn-primary btn-print">Print</a>';
 			$res .= '<form class="new-tab-opener" method="get" target="_blank"></form>';	
 		}
 		
@@ -90,10 +90,10 @@ class AdmReportsModel {
 		
 		if ($forHardcopy) {
 			$res .= '<!DOCTYPE html><head><style>h1,h2,h3,h4,h5,h6{margin: 5px 0;}</style></head><body style="text-align:center;width:980px;margin: 20px auto;" onload="window.print();">';
-			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/ccaimages/rpthdr.png"><br /><br />';
+			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/rpthdr.png"><br /><br />';
 		} else {
 			$res .= '<div class="printtoscreen admreport">';
-			$res .= '<a data-href="'.URL.'admreports/printadmreport/2/'.$date->format('Y-m-d').'" href="javascript:" class="btn btn-primary btn-print">Print</a>';
+			$res .= '<a data-href="'.URL.'admreports/printadmreport/2/'.$date->format('Y-m-d').'" href="#" class="btn btn-primary btn-print">Print</a>';
 			$res .= '<form class="new-tab-opener" method="get" target="_blank"></form>';	
 		}
 		
@@ -173,10 +173,10 @@ class AdmReportsModel {
 		
 		if ($forHardcopy) {
 			$res .= '<!DOCTYPE html><head><style>h1,h2,h3,h4,h5,h6{margin: 5px 0;}</style></head><body style="width:500px;text-align:center;margin: 20px auto;" onload="window.print();">';
-			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/ccaimages/rpthdr.png"><br /><br />';
+			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/rpthdr.png"><br /><br />';
 		} else {
 			$res .= '<div class="printtoscreen admreport">';
-			$res .= '<a data-href="'.URL.'admreports/printadmreport/3/'.Session::get('local_tzo').'" href="javascript:" class="btn btn-primary btn-print">Print</a>';
+			$res .= '<a data-href="'.URL.'admreports/printadmreport/3/'.Session::get('local_tzo').'" href="#" class="btn btn-primary btn-print">Print</a>';
 			$res .= '<form class="new-tab-opener" method="get" target="_blank"></form>';	
 		}
 		
@@ -245,10 +245,10 @@ class AdmReportsModel {
 		
 		if ($forHardcopy) {
 			$res .= '<!DOCTYPE html><head><style>h1,h2,h3,h4,h5,h6{margin: 5px 0;}table{width:100%;}</style></head><body style="width:600px;text-align:center;margin: 20px auto;" onload="window.print();">';
-			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/ccaimages/rpthdr.png"><br /><br />';
+			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/rpthdr.png"><br /><br />';
 		} else {
 			$res .= '<div class="printtoscreen admreport">';
-			$res .= '<a data-href="'.URL.'admreports/printadmreport/4/'.$account_id.'" href="javascript:" class="btn btn-primary btn-print">Print</a>';
+			$res .= '<a data-href="'.URL.'admreports/printadmreport/4/'.$account_id.'" href="#" class="btn btn-primary btn-print">Print</a>';
 			$res .= '<form class="new-tab-opener" method="get" target="_blank"></form>';	
 		}
 		

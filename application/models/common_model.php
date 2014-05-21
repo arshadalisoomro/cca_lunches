@@ -49,7 +49,7 @@ class CommonModel {
 				FROM los_payments p
 				WHERE a.id = p.account_id
 				AND deleted=0)");
-        $sth -> execute();
+        $sth->execute();
 
         $sth = $this->db->prepare("UPDATE los_accounts a
 			SET total_debits=
@@ -57,7 +57,7 @@ class CommonModel {
   				FROM los_orders o
   				WHERE a.id = o.account_id
   				AND o.statusCode < 2)");
-        $sth -> execute();
+        $sth->execute();
 
         $sth = $this->db->prepare("UPDATE los_accounts a
 			SET confirmed_debits=
@@ -65,6 +65,6 @@ class CommonModel {
   				FROM los_orders o
   				WHERE a.id = o.account_id
   				AND o.statusCode = 1)");
-        $sth -> execute();
+        $sth->execute();
     }
 }

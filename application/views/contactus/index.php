@@ -1,10 +1,9 @@
 <div class="container page width400">
-    <div class="pull-right" style="font-size: 15px;">
+    <div class="pull-right">
         <a href="mailto:support@ccalunches.com?Subject=CCA Lunch Program Question" target="_top">support@ccalunches.com</a>
     </div>
     <h2>Contact Us</h2>
-    <br />
-
+	
     <form role="form" method="post" action="<?php echo URL; ?>contactus/contactus" name="contact_form">
         <div class="form-group">
             <label for="sendername">Your Name</label>
@@ -34,8 +33,6 @@
         </div>
 
         <br />
-
-        <?php $this->renderFeedbackMessages(); ?>
 
         <div style="text-align:center;">
             <button type="submit" class="btn btn-primary">

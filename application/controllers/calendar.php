@@ -35,11 +35,11 @@ class Calendar extends Controller {
      **************************
      */
     public function getaccountid() {
-        if (!isset($_SESSION['account_id'])) {
-            echo 0;
-            return 0;
-        } else
-            echo Session::get('account_id');
+		$account_id = 0;
+        if (isset($_SESSION['account_id']))
+			$account_id = Session::get('account_id');
+		echo $account_id;
+		return $account_id;
     }
     /**
      **************************
@@ -58,6 +58,8 @@ class Calendar extends Controller {
 	public function getorderdetails() {
         if ( (isset($_GET['userID'])) && (isset($_GET['dateYMD'])) ) {
             $calendar_model = $this->loadModel('Calendar');
+			header('Cache-Control: no-cache, must-revalidate');
+			header('Content-type: application/json');
 		    echo $calendar_model->getOrderDetails($_GET['userID'],$_GET['dateYMD']);
         } else {
             echo 'error';
@@ -67,20 +69,23 @@ class Calendar extends Controller {
      **************************
      */
 	public function saveorder() {
-		$res = array();	
-		$orderID = 0;
+		if (!isset($_SESSION['account_id'])) {
+            echo 'error';
+			return;
+        }
+		$chk = 0;
 		if (isset($_POST['chk']))
 			$chk = $_POST['chk'];	
-		else
-			$chk = 0;
         $calendar_model = $this->loadModel('Calendar');
         $calendar_model->saveOrder($_POST['rb'],$chk,$_POST['dateYMD'],$_POST['userID'],$_POST['orderID'],$_POST['account_id']);
         $common_model = $this->loadModel('Common');
         $common_model->updateDebits($_POST['account_id']);
-		$res[] = $calendar_model->getOrderCell($_POST['userID'],$_POST['dateYMD'],$orderID);
-		$res[] = $orderID;
+		
+		header('Cache-Control: no-cache, must-revalidate');
+		header('Content-type: application/json');
+		$json[] = $calendar_model->getOrderCell($_POST['userID'],$_POST['dateYMD']);
 		if (Session::get('user_account_type') != ACCOUNT_TYPE_ADMIN)
-			$res[] = $calendar_model->getAmountDue();
-		echo json_encode($res);
+			$json[]= $calendar_model->getAmountDue();
+		echo json_encode($json);
 	}
 }

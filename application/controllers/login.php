@@ -38,7 +38,7 @@ class Login extends Controller {
 
         // check login status
         if ($login_successful) {
-            // if YES, then move user to orderlunches/index (btw this is a browser-redirection, not a rendered view!)
+            // if YES, then move user (btw this is a browser-redirection, not a rendered view!)
             header('location: ' . URL . 'calendar/index');
         } else {
             // if NO, then move user to login/index (login form) again
@@ -58,7 +58,7 @@ class Login extends Controller {
 
         // check login status
         if ($login_successful) {
-            // if YES, then move user to orderlunches/index (this is a browser-redirection, not a rendered view)
+            // if YES, then move user (this is a browser-redirection, not a rendered view)
             header('location: ' . URL . 'calendar/index');
         } else {
             // if NO, then move user to login/index (login form) (this is a browser-redirection, not a rendered view)
@@ -80,19 +80,14 @@ class Login extends Controller {
     /**
      * Login with cookie
      */
-    function loginWithCookie()
+	 function loginWithCookie()
     {
         // run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
         $login_model = $this->loadModel('Login');
         $login_successful = $login_model->loginWithCookie();
 
         if ($login_successful) {
-            $location = $login_model->getCookieUrl();
-            if ($location) {
-                header('location: ' . URL . $location);
-            } else {
-                header('location: ' . URL . 'calendar/index');
-            }
+            header('location: ' . URL . 'calendar/index');
         } else {
             // delete the invalid cookie to prevent infinite login loops
             $login_model->deleteCookie();
@@ -100,8 +95,8 @@ class Login extends Controller {
             header('location: ' . URL . 'login/index');
         }
     }
-
-    /**
+	
+     /**
      * Show user's profile
      */
     function showProfile()
@@ -126,6 +121,11 @@ class Login extends Controller {
      */
     function editUsername_action()
     {
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
         $login_model = $this->loadModel('Login');
         $login_model->editUserName();
         $this->view->render('login/editusername');
@@ -146,6 +146,11 @@ class Login extends Controller {
      */
     function editUserEmail_action()
     {
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
         $login_model = $this->loadModel('Login');
         $login_model->editUserEmail();
         $this->view->render('login/edituseremail');
@@ -168,6 +173,11 @@ class Login extends Controller {
      */
     function uploadAvatar_action()
     {
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
         $login_model = $this->loadModel('Login');
         $login_model->createAvatar();
         $this->view->render('login/uploadavatar');
@@ -188,6 +198,11 @@ class Login extends Controller {
      */
     function changeAccountType_action()
     {
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
         $login_model = $this->loadModel('Login');
         $login_model->changeAccountType();
         $this->view->render('login/changeaccounttype');
@@ -250,9 +265,13 @@ class Login extends Controller {
      */
     function verify($user_id, $user_activation_verification_code)
     {
-        $login_model = $this->loadModel('Login');
-        $login_model->verifyNewUser($user_id, $user_activation_verification_code);
-        $this->view->render('login/verify');
+        if (isset($user_id) && isset($user_activation_verification_code)) {
+            $login_model = $this->loadModel('Login');
+            $login_model->verifyNewUser($user_id, $user_activation_verification_code);
+            $this->view->render('login/verify');
+        } else {
+            header('location: ' . URL . 'login/index');
+        }
     }
 
     /**
@@ -293,6 +312,8 @@ class Login extends Controller {
 
     /**
      * Set the new password
+     * Please note that this happens while the user is not logged in.
+     * The user identifies via the data provided by the password reset link from the email.
      */
     function setNewPassword()
     {

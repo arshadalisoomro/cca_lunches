@@ -2,8 +2,6 @@
     <div class="pull-right"><a href="<?php echo URL; ?>login/index">Back to Login Page</a></div>
     <h2>Set New Password</h2>
 
-    <?php $this->renderFeedbackMessages(); ?>
-
     <form role="form" method="post" action="<?php echo URL; ?>login/setnewpassword" name="new_password_form">
         <div class="form-group">
             <label for="reset_input_password_new">New password (min. 6 characters!)</label>

@@ -11,11 +11,11 @@ class ReportsModel {
 		$res = '';
 		if ($forHardcopy) {
 			$res .= '<div style="text-align:center;width:980px;margin: 0 auto;">';
-			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/ccaimages/rpthdr.png">';
+			$res .= '<img style="width:142px;height:40px;" src="'.URL.'public/img/rpthdr.png">';
 			
 		} else {
 			$res .= '<div class="printtoscreen">';
-			$res .= '<a data-href="'.URL.'reports/printlunchreport" href="javascript:" class="btn btn-primary btn-print">Print</a>';
+			$res .= '<a data-href="'.URL.'reports/printlunchreport" href="#" class="btn btn-primary btn-print">Print</a>';
 			$res .= '<form class="new-tab-opener" method="get" target="_blank"></form>';	
 		}
 		$res .= '<h2>Upcoming Lunch Orders</h2>';
@@ -77,7 +77,7 @@ class ReportsModel {
 		}
 		$res .= '</div>';
 		$res .= '<br>';
-		$res .= '<p style="width: 500px;border-top:1px solid #ccc;text-align:center;margin: 0 auto;padding: 8px 0;"></p>';
+		$res .= '<p style="width: 66%;border-top:1px solid #ccc;text-align:center;margin: 0 auto;padding: 8px 0;"></p>';
 		$res .= '<em>Note: [scheduled] orders can be changed or canceled.</em></p>';
 		if ($forHardcopy)
 			$res .= '<div><a href="#" onclick="window.print()">Print this window</a></div>';

@@ -65,7 +65,7 @@ class Account extends Controller {
 			$payPalURL = PAYPAL_URL.$token;
 			header('Location: '. $payPalURL) ;
 		} else  {
-			$this->myaccount();
+			$this->index();
 		}
 	}
     /**
@@ -139,7 +139,7 @@ class Account extends Controller {
 			$resArray=$this->hash_call("DoExpressCheckoutPayment",$nvpstr);
 			$ack = strtoupper($resArray["ACK"]);
 			if($ack != 'SUCCESS' && $ack != 'SUCCESSWITHWARNING'){
-				$this->myaccount();
+				$this->index();
 			} else {
                 $account_model = $this->loadModel('Account');
                 $account_model->savePayment($resArray);
@@ -149,7 +149,7 @@ class Account extends Controller {
 				header('Location: '.URL.'account/index') ;
 			}
 		} else  {
-			$this->myaccount();
+			$this->index();
 		}
 	}
 }

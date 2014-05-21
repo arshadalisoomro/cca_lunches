@@ -103,6 +103,7 @@ class LoginModel
             Session::set('user_provider_type', 'DEFAULT');
             // put native avatar path into session
             Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+			Session::set('local_tzo', $_POST['local_tzo']);
             // put Gravatar URL into session
             $this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 
@@ -298,22 +299,6 @@ class LoginModel
     }
 
     /**
-     * Gets the last page the user visited
-     * writeUrlCookie() in libs/Application.php writes the URL of the user's page location into the cookie at every
-     * page request. This is useful to redirect the user (after login via cookie) back to the last seen page before
-     * his/her session expired or he/she closed the browser
-     * @return string view/location the user visited
-     */
-    public function getCookieUrl()
-    {
-        $url = '';
-        if (!empty($_COOKIE['lastvisitedpage'])) {
-            $url = $_COOKIE['lastvisitedpage'];
-        }
-        return $url;
-    }
-
-    /**
      * Log out process, deletes cookie, deletes session
      */
     public function logout()
@@ -373,7 +358,7 @@ class LoginModel
         }
 
         // clean the input
-        $user_name = substr(htmlentities($_POST['user_name'], ENT_QUOTES), 0, 64);
+        $user_name = substr(strip_tags($_POST['user_name']), 0, 64);
 
         // check if new username already exists
         $query = $this->db->prepare("SELECT id as account_id FROM los_accounts WHERE user_name = :user_name");
@@ -431,7 +416,7 @@ class LoginModel
         }
 
         // cleaning and write new email to database
-        $user_email = substr(htmlentities($_POST['user_email'], ENT_QUOTES), 0, 64);
+        $user_email = substr(strip_tags($_POST['user_email']), 0, 64);
         $query = $this->db->prepare("UPDATE los_accounts SET user_email = :user_email WHERE id = :account_id");
         $query->execute(array(':user_email' => $user_email, ':account_id' => $_SESSION['account_id']));
         $count =  $query->rowCount();
@@ -487,8 +472,8 @@ class LoginModel
             AND ($_POST['user_password_new'] === $_POST['user_password_repeat'])) {
 
             // clean the input
-            $user_name = htmlentities($_POST['user_name'], ENT_QUOTES);
-            $user_email = htmlentities($_POST['user_email'], ENT_QUOTES);
+            $user_name = strip_tags($_POST['user_name']);
+            $user_email = strip_tags($_POST['user_email']);
 
             // crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
             // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
@@ -584,7 +569,7 @@ class LoginModel
             // enable SMTP authentication
             $mail->SMTPAuth = EMAIL_SMTP_AUTH;
             // enable encryption, usually SSL/TLS
-            if (defined(EMAIL_SMTP_ENCRYPTION)) {
+            if (defined('EMAIL_SMTP_ENCRYPTION')) {
                 $mail->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
             }
             // set SMTP provider's credentials
@@ -709,7 +694,7 @@ class LoginModel
             return false;
         }
         // if input file too small
-        if ($image_proportions[0] < 100 OR $image_proportions[1] < 100) {
+        if ($image_proportions[0] < AVATAR_SIZE OR $image_proportions[1] < AVATAR_SIZE) {
             $_SESSION["feedback_negative"][] = FEEDBACK_AVATAR_UPLOAD_TOO_SMALL;
             return false;
         }
@@ -863,7 +848,7 @@ class LoginModel
         // generate random hash for email password reset verification (40 char string)
         $user_password_reset_hash = sha1(uniqid(mt_rand(), true));
         // clean user input
-        $user_name = htmlentities($_POST['user_name'], ENT_QUOTES);
+        $user_name = strip_tags($_POST['user_name']);
 
         // check if that username exists
         $query = $this->db->prepare("SELECT user_email FROM los_accounts
@@ -939,7 +924,7 @@ class LoginModel
             // Enable SMTP authentication
             $mail->SMTPAuth = EMAIL_SMTP_AUTH;
             // Enable encryption, usually SSL/TLS
-            if (defined(EMAIL_SMTP_ENCRYPTION)) {
+            if (defined('EMAIL_SMTP_ENCRYPTION')) {
                 $mail->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
             }
             // Specify host server
@@ -1060,7 +1045,7 @@ class LoginModel
                                         SET user_password_hash = :user_password_hash,
                                             user_password_reset_hash = NULL,
                                             user_password_reset_timestamp = NULL,
-                                            use_new_password = 1
+											use_new_password = 1
                                       WHERE user_name = :user_name
                                         AND user_password_reset_hash = :user_password_reset_hash
                                         AND user_provider_type = :user_provider_type");
@@ -1250,12 +1235,15 @@ class LoginModel
             return false;
         }
 
-        // check if a user with that username already exists in our database
+		// check if a user with that username already exists in our database
         // note: Facebook's internal username is usually the person's full name plus a number (and dots between)
-        // TODO: if username is already taken, add number etc. to potential username and repeat this step
         if ($this->facebookUserNameExistsAlreadyInDatabase($facebook_user_data)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_FACEBOOK_USERNAME_ALREADY_EXISTS;
-            return false;
+        	$facebook_user_data["username"] = $this->generateUniqueUserNameFromExistingUserName($facebook_user_data["username"]);
+         if ($this->facebookUserNameExistsAlreadyInDatabase($facebook_user_data)) {
+        	//shouldn't get here if we managed to generate a unique name!
+        	$_SESSION["feedback_negative"][] = FEEDBACK_FACEBOOK_USERNAME_ALREADY_EXISTS;
+          return false;
+         }
         }
 
         // check if that email address already exists in our database
@@ -1383,5 +1371,29 @@ class LoginModel
         }
         // default return
         return false;
+    }
+	
+	 /**
+     * Generate unique user_name from facebook-user's username appended with a number
+     * @param string $existing_name $facebook_user_data stuff from the facebook class
+     * @return string unique user_name not in database yet
+     */
+    public function generateUniqueUserNameFromExistingUserName($existing_name)
+    {
+    	//strip any dots, trailing numbers and white spaces
+        $existing_name = str_replace(".", "", $existing_name);
+        $existing_name = preg_replace('/\s*\d+$/', '', $existing_name);
+
+        // loop until we have a new username, adding an increasing number to the given string every time
+    	$n = 0;
+    	do {
+            $n = $n+1;
+            $new_username = $existing_name . $n;
+            $query = $this->db->prepare("SELECT user_id FROM users WHERE user_name = :name_with_number");
+            $query->execute(array(':name_with_number' => $new_username));
+    	 	 
+    	 } while ($query->rowCount() == 1);
+
+    	return $new_username;
     }
 }

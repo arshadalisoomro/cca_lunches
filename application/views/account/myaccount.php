@@ -6,19 +6,17 @@
 			echo '<div>' . $this->paymentmessage . '</div>';
 			echo '</div>';
 		}
-
-        $this->renderFeedbackMessages();
 	?>
 			
     <div class="accountdiv">
-        <img class="pull-left" style="margin-right: 10px;" src="<?php echo URL; ?>public/img/ccaimages/myaccount.png" alt="My account">
+        <img class="pull-left" style="margin-right: 10px;" src="<?php echo URL; ?>public/img/myaccount.png" alt="My account">
         <h2><?php echo $this->account_name; ?></h2>
         <br />
         <ul id="accountTab" class="nav nav-tabs">
             <li class='active'><a data-toggle="tab" href="#tabTotals">Summary</a></li>
             <li><a data-toggle="tab" href="#tabPayments">Payments</a></li>
             <?php foreach ($this->firstnames as $i=>$firstName) : ?>
-                <li><a data-toggle="tab" href="#tab<?php echo $i; ?>"><?php echo $firstName.'\'s Orders'; ?></a></li>
+                <li class="usertab"><a data-toggle="tab" href="#tab<?php echo $i; ?>"><?php echo $firstName.'\'s Orders'; ?></a></li>
             <?php endforeach; ?>
         </ul>
 
@@ -45,17 +43,18 @@
                     </tbody>
                 </table>
                 <?php if ($this->balance < 0) :?>
-                    <div style="text-align:right;">
-                        <form class="form-inline" role="form" id="paypal-form" action="<?php echo URL; ?>account/pay" method="post">
-                            <div class="form-group">
-                                <span id='redirectingtextaccount' class="hide">Redirecting to PayPal...</span>
-                                <span id='loadinggifaccount' class="hide"></span>
-                                <input id="ppbtn" type="image" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_paynow_LG.gif"/>
-                                <input type="text" class="form-control currency" id="amountToPay" name="amtToPay" value="<?php echo $this->amttopay; ?>"
-                                    data-orig="<?php echo $this->amttopay; ?>" />
-                            </div>
-                        </form>
-                    </div>
+					<form role="form" id="paypal-form" action="<?php echo URL; ?>account/pay" method="post">
+						<table>
+							<tr>
+								<td style="width:100%;">&nbsp;</td>
+								<td><span id='redirectingtextaccount' class="hide">Redirecting to PayPal...</span></td>
+								<td><span id='loadinggifaccount' class="hide"></span></td>
+								<td><input id="ppbtn" type="image" name="submit" src="https://www.paypal.com/en_US/i/btn/btn_paynow_LG.gif"/></td>
+								<td><input type="text" class="form-control currency" id="amountToPay" name="amtToPay" value="<?php echo $this->amttopay; ?>"
+									data-orig="<?php echo $this->amttopay; ?>" /></td>
+							</tr>
+						</table>
+					</form>
                 <?php endif ?>
             </div>
 
@@ -95,3 +94,25 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" src="<?php echo URL; ?>public/js/vendor/jquery.formatCurrency-1.4.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		"use strict";
+		$(document).on("blur",'.currency', function(e) {
+			$('.currency').formatCurrency();
+		});
+		$('#paypal-form').submit(function() {
+			$("#amountToPay").attr('readonly', true);
+			$("#ppbtn").attr('readonly', true);
+			$("#redirectingtextaccount").removeClass('hide');
+			$("#loadinggifaccount").removeClass('hide');
+		});
+		$(window).unload(function() {
+			$("#amountToPay").attr('readonly', false);
+			$("#ppbtn").attr('readonly', false);
+			$("#redirectingtextaccount").addClass('hide');
+			$("#loadinggifaccount").addClass('hide');
+		});
+	});
+</script>

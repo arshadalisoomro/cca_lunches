@@ -25,8 +25,7 @@ class View
             require VIEWS_PATH . '_templates/footer.php';
         }
     }
-
-    public function render_report($filename, $copyright = true, $hardcopy = false)
+	public function render_report($filename, $copyright = true, $hardcopy = false)
     {
         if ($hardcopy)
             require VIEWS_PATH . '_templates/printheader.php';
@@ -40,7 +39,6 @@ class View
         else
             require VIEWS_PATH . '_templates/footer.php';
     }
-
     /**
      * renders the feedback messages into the view
      */

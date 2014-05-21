@@ -11,7 +11,7 @@
 
         <div class="form-group">
             <label for="select-send-mail-to">Send To</label><br />
-            <select id="select-send-mail-to" name="select-send-mail-to">
+            <select id="select-send-mail-to" name="select-send-mail-to" class="form-control">
 				<option value="1">"FROM" address entered above (for testing purposes)</option>
                 <option value="2">New users created today</option>
                 <option value="3">All active users (anyone who has ever ordered lunch)</option>
@@ -35,8 +35,6 @@
         </div>
 
         <br />
-
-        <?php $this->renderFeedbackMessages(); ?>
 
         <div style="text-align:center;">
             <button type="submit" class="btn btn-primary">
