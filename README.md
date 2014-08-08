@@ -27,4 +27,4 @@ This project was created to help a private grade school manage their lunch progr
 
 ## Live Demo
 
-See a [live demonstration](http://erictotten.info/orderlunches/).
+See a [live demonstration](http://erictotten.info/demos/orderlunches/).
